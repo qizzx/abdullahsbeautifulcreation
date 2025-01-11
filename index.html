@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Big Red Button</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .big-red-button {
+            width: 200px;
+            height: 200px;
+            background: red;
+            border: 5px solid darkred;
+            border-radius: 50%;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            text-align: center;
+            line-height: 200px;
+            cursor: pointer;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
+            transition: transform 0.2s;
+        }
+
+        .big-red-button:active {
+            transform: scale(0.95);
+        }
+
+        .flashing-effect {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            animation: flash 0.5s infinite;
+            z-index: 9998;
+        }
+
+        @keyframes flash {
+            0% {
+                background: blue;
+            }
+            50% {
+                background: black;
+            }
+            100% {
+                background: blue;
+            }
+        }
+
+        #videoContainer {
+            position: fixed;
+            top: 10%;
+            left: 10%;
+            width: 80vw;
+            height: 80vh;
+            z-index: 9999;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="big-red-button" id="redButton">PRESS ME</div>
+
+    <div id="videoContainer" style="display: none;">
+        <!-- Embedding the provided video with autoplay and full volume -->
+        <iframe id="rickRollVideo" 
+                src="https://www.youtube.com/embed/ZgTck7vGwIk?autoplay=1&mute=0&rel=0&autohide=1&showinfo=0" 
+                allow="autoplay"></iframe>
+    </div>
+
+    <script>
+        const button = document.getElementById("redButton");
+        const videoContainer = document.getElementById("videoContainer");
+        let flashingDiv;
+
+        // Function to enter fullscreen (optional, but for the flashing effect itself)
+        function enterFullscreen() {
+            if (document.documentElement.requestFullscreen) {
+                document.documentElement.requestFullscreen();
+            } else if (document.documentElement.mozRequestFullScreen) {
+                document.documentElement.mozRequestFullScreen(); // Firefox
+            } else if (document.documentElement.webkitRequestFullscreen) {
+                document.documentElement.webkitRequestFullscreen(); // Chrome, Safari
+            } else if (document.documentElement.msRequestFullscreen) {
+                document.documentElement.msRequestFullscreen(); // IE/Edge
+            }
+        }
+
+        button.addEventListener("click", () => {
+            // Enter fullscreen
+            enterFullscreen();
+
+            // Create the flashing effect
+            flashingDiv = document.createElement("div");
+            flashingDiv.classList.add("flashing-effect");
+            document.body.appendChild(flashingDiv);
+
+            // Show the YouTube video inside the flashing effect
+            videoContainer.style.display = "block";
+
+            // Hide the button
+            button.style.display = "none";
+        });
+
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" && flashingDiv) {
+                // Exit fullscreen if it's active
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen(); // Firefox
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen(); // Chrome, Safari
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen(); // IE/Edge
+                }
+
+                // Remove the flashing effect and show the button again
+                document.body.removeChild(flashingDiv);
+                button.style.display = "flex";
+
+                // Hide the video container
+                videoContainer.style.display = "none";
+            }
+        });
+    </script>
+</body>
+</html>
