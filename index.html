@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Big Red Button</title>
     <style>
-        /* Body styling with gradient background */
+        /* Body Styling */
         body {
             font-family: Arial, sans-serif;
             text-align: center;
@@ -15,37 +15,57 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(45deg, #ff6a00, #ee0979);
+            background: linear-gradient(45deg, #000000, #ffffff);
             animation: gradientAnimation 10s ease infinite;
             overflow: hidden;
         }
 
-        /* Button styling */
+        /* Gradient Animation for Background */
+        @keyframes gradientAnimation {
+            0% {
+                background: linear-gradient(45deg, #000000, #ffffff);
+            }
+            50% {
+                background: linear-gradient(45deg, #333333, #e0e0e0);
+            }
+            100% {
+                background: linear-gradient(45deg, #000000, #ffffff);
+            }
+        }
+
+        /* Styling for Big Red Button (Perfectly Round) */
         #bigButton {
             background-color: red;
             color: white;
-            padding: 40px 60px;
+            padding: 50px;
             font-size: 24px;
             border: none;
-            border-radius: 50%; /* Makes the button round */
+            border-radius: 50%; /* Ensures the button is round */
             cursor: pointer;
-            margin-top: 50px;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 20px rgba(255, 0, 0, 0.7);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: buttonGlow 1.5s ease-in-out infinite alternate;
         }
 
-        /* Button hover effect */
+        /* Glowing effect on the button */
+        @keyframes buttonGlow {
+            0% {
+                box-shadow: 0 0 15px red, 0 0 25px red, 0 0 40px red;
+            }
+            100% {
+                box-shadow: 0 0 20px red, 0 0 30px red, 0 0 50px red;
+            }
+        }
+
+        /* Button Hover Effect */
         #bigButton:hover {
-            transform: scale(1.1);  /* Makes the button slightly bigger */
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            transform: scale(1.1); /* Makes the button slightly bigger */
+            box-shadow: 0 0 25px red, 0 0 40px red;
         }
 
-        /* Button click animation */
+        /* Button Click Animation */
         #bigButton:active {
-            transform: scale(1.05);  /* Slightly smaller when clicked */
+            transform: scale(1.05); /* Makes the button shrink slightly when clicked */
         }
 
         /* Flash effect background */
@@ -61,14 +81,14 @@
             animation: flash 0.5s linear infinite;
         }
 
-        /* Flash animation for smooth transition */
+        /* Flashing effect for background */
         @keyframes flash {
             0% { background: blue; }
             50% { background: black; }
             100% { background: blue; }
         }
 
-        /* YouTube video styling */
+        /* YouTube video iframe styling */
         #video {
             display: none;
             position: fixed;
@@ -81,24 +101,11 @@
             border-radius: 10px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
         }
-
-        /* Animation for background gradient */
-        @keyframes gradientAnimation {
-            0% {
-                background: linear-gradient(45deg, #ff6a00, #ee0979);
-            }
-            50% {
-                background: linear-gradient(45deg, #00c6ff, #0072ff);
-            }
-            100% {
-                background: linear-gradient(45deg, #ff6a00, #ee0979);
-            }
-        }
     </style>
 </head>
 <body>
 
-    <!-- Big Red Button (Round and Centered) -->
+    <!-- Big Red Button (Perfectly Round and Centered) -->
     <button id="bigButton">Click me!</button>
 
     <!-- Flash effect background -->
