@@ -5,15 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Big Red Button</title>
     <style>
-        /* Basic page styling */
+        /* Body styling with gradient background */
         body {
             font-family: Arial, sans-serif;
             text-align: center;
             margin: 0;
             padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(45deg, #ff6a00, #ee0979);
+            animation: gradientAnimation 10s ease infinite;
+            overflow: hidden;
         }
 
-        /* Styling for the big round red button */
+        /* Button styling */
         #bigButton {
             background-color: red;
             color: white;
@@ -26,9 +33,22 @@
             display: block;
             margin-left: auto;
             margin-right: auto;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        /* Initial styling for the flash effect */
+        /* Button hover effect */
+        #bigButton:hover {
+            transform: scale(1.1);  /* Makes the button slightly bigger */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Button click animation */
+        #bigButton:active {
+            transform: scale(1.05);  /* Slightly smaller when clicked */
+        }
+
+        /* Flash effect background */
         #flash {
             display: none;
             position: fixed;
@@ -41,14 +61,14 @@
             animation: flash 0.5s linear infinite;
         }
 
-        /* Flashing animation */
+        /* Flash animation for smooth transition */
         @keyframes flash {
             0% { background: blue; }
             50% { background: black; }
             100% { background: blue; }
         }
 
-        /* Hide the video initially */
+        /* YouTube video styling */
         #video {
             display: none;
             position: fixed;
@@ -58,6 +78,21 @@
             width: 80%;
             height: 80%;
             z-index: 1100;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Animation for background gradient */
+        @keyframes gradientAnimation {
+            0% {
+                background: linear-gradient(45deg, #ff6a00, #ee0979);
+            }
+            50% {
+                background: linear-gradient(45deg, #00c6ff, #0072ff);
+            }
+            100% {
+                background: linear-gradient(45deg, #ff6a00, #ee0979);
+            }
         }
     </style>
 </head>
