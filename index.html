@@ -13,16 +13,19 @@
             padding: 0;
         }
 
-        /* Styling for the big red button */
+        /* Styling for the big round red button */
         #bigButton {
             background-color: red;
             color: white;
-            padding: 20px 40px;
-            font-size: 20px;
+            padding: 40px 60px;
+            font-size: 24px;
             border: none;
-            border-radius: 10px;
+            border-radius: 50%; /* Makes the button round */
             cursor: pointer;
             margin-top: 50px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         /* Initial styling for the flash effect */
@@ -60,15 +63,15 @@
 </head>
 <body>
 
-    <!-- Big Red Button -->
+    <!-- Big Red Button (Round and Centered) -->
     <button id="bigButton">Click me!</button>
 
     <!-- Flash effect background -->
     <div id="flash"></div>
 
-    <!-- YouTube video (muted & autoplay enabled) -->
+    <!-- YouTube Shorts video (autoplay and muted) -->
     <iframe id="video" width="560" height="315" 
-            src="https://www.youtube.com/embed/i09lI-8PI-c?autoplay=1&mute=1" 
+            src="https://www.youtube.com/embed/he--UupAxLk?autoplay=1&mute=1" 
             frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
     </iframe>
 
